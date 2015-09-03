@@ -23,8 +23,9 @@
       $(function() {
         // set up model objects
         var library = new Songs(songData);
+        // debugger;
         var app = new AppModel({library: library});
-
+        console.log(app.get("currentSong"));
         // build a view for the top level of the whole app
         var appView = new AppView({model: app});
 
