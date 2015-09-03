@@ -31,11 +31,6 @@ describe('SongModel', function() {
     });
   });
 
-  describe('ended', function() {
-    it('triggers an "ended" event', function() {
-      model.play();
-      model.ended();
-      expect(model.trigger).to.have.been.calledWith('ended', model);
-    });
-  });
+
+  
 });

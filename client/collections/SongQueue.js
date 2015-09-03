@@ -10,26 +10,40 @@ var SongQueue = Songs.extend({
     }, this);
 
     //Dequeue listener
-    this.on('dequeue', function(song) {
-      this.shift();
-      if (this.length > 0) {
-        this.playFirst();
-      }
-    }, this);
+    // this.on('dequeue', function(song) {
+    //   this.shift();
+    //   if (this.length > 0) {
+    //     this.playFirst();
+    //   }
+    // }, this);
 
     //For ended listener
     this.on('ended', function(song){
-      this.trigger('dequeue');
+      // this.trigger('dequeue');
     }, this);
 
     // Remove listener
-    this.on('removeFromQueue', function(song) {
-      this.remove(song);
+    this.on('removeFromQueue remove', function(song) {
+      //Check if removing first song
+      var removedFirst = this.at(0) === song;
+      // debugger;
+      this.remove(song); // backbone method to remove stuff from collections
+      if (this.length === 0) {
+        this.trigger("stopOnlySong", this);
+      }
+      // debugger;
+      if(removedFirst){
+        this.playFirst();
+      };
     }, this);
   }, 
 
   playFirst: function() {
-    this.models[0].play();
+    if(this.models.length > 0){
+      this.models[0].play();
+    } else {
+      this.trigger("ended");
+    }
   }
 
 });
