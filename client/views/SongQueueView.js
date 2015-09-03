@@ -3,10 +3,6 @@ var SongQueueView = Backbone.View.extend({
 
   initialize: function() {
     this.collection.on('add', function() { // fallback will be update
-      //If only one song, play immediately
-      if (this.collection.length === 1) {
-        this.collection.playFirst();
-      }
       //Render
       this.render();
     }, this); 
