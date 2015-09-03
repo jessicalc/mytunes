@@ -13,14 +13,20 @@ var AppModel = Backbone.Model.extend({
 
     // *TODO* put these in the Songs.js 
     params.library.on('play', function(song) {
+      // debugger;
       this.set('currentSong', song);
     }, this);
 
     params.library.on('enqueue', function(song) {
-      this.get('songQueue').push(song);
-      if (this.get('songQueue').length === 1) {
-        song.play();
-      }
+      console.log("song added");
+      this.get('songQueue').add(/*new SongModel({
+        url: song.get("url"),
+        artist: song.get("artist"),
+        title: song.get("title")
+      })*/song);
+      // if (this.get('songQueue').length === 1) {
+      //   song.play();
+      // }
     }, this);
   }
 

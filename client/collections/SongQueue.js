@@ -4,7 +4,7 @@ var SongQueue = Songs.extend({
   initialize: function() {
     //Add listener 
     this.on('add', function() {
-      if (this.models.length === 1) {
+      if (this.length === 1) {
         this.playFirst();
       }
     }, this);
@@ -12,7 +12,7 @@ var SongQueue = Songs.extend({
     //Dequeue listener
     this.on('dequeue', function(song) {
       this.shift();
-      if (this.models.length > 0) {
+      if (this.length > 0) {
         this.playFirst();
       }
     }, this);
