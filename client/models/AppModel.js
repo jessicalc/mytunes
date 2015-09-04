@@ -35,10 +35,10 @@ var AppModel = Backbone.Model.extend({
 
     this.get('songQueue').on("stopOnlySong", function() {
       this.set('currentSong', null);
+      // this.songQueue.set()
     }, this);
 
     this.get("playlists").on("add", function(playlist){
-      debugger;
       console.log("we put in a playlist");
       console.log(playlist);
     }, this);
